@@ -1,0 +1,71 @@
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="mainBorderPane"
+            fx:controller="com.company.Controller"
+            xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <MenuBar>
+            <Menu text="Action">
+                <items>
+                    <Menu text="New...">
+                        <items>
+                            <MenuItem text="Project"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Invoice"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Task"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Contact"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Prepayment"/>
+                        </items>
+                    </Menu>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Edit.."/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit"/>
+                </items>
+            </Menu>
+            <Menu text="API Request">
+                <items>
+                    <MenuItem text="Projects" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Invoices" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Prepayments" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Tasks" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Contacts" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Products" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Orders" onAction="#getResponse"/>
+                </items>
+            </Menu>
+        </MenuBar>
+    </top>
+    <left>
+        <ListView fx:id="itemView" onKeyPressed="#handleKeyPressed">
+
+        </ListView>
+    </left>
+    <center>
+        <VBox style="-fx-background-color: white">
+            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS" wrapText="true"/>
+            <HBox>
+                <Label text=" Due: " style="-fx-background-color: white">
+                    <font>
+                        <Font name="Calibri bold" size="20"/>
+                    </font>
+                </Label>
+                <Label fx:id="deadlineLabel" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Calibri bold" size="20"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
