@@ -1,17 +1,10 @@
-package com.company;
+package com.w0lfaton;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Scanner;
 import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 

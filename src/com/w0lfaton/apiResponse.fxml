@@ -8,7 +8,7 @@
 
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.company.ApiResponseController">
+            fx:controller="com.w0lfaton.ApiResponseController">
     <headerText>
 
     </headerText>

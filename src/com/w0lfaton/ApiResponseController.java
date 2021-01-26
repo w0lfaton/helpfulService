@@ -1,4 +1,4 @@
-package com.company;
+package com.w0lfaton;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

@@ -1,4 +1,4 @@
-package com.company;
+package com.w0lfaton;
 
 import java.io.IOException;
 import java.net.URI;

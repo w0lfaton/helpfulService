@@ -1,4 +1,4 @@
-package com.company;
+package com.w0lfaton;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
