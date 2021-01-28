@@ -42,6 +42,8 @@
                     <MenuItem text="Products" onAction="#getResponse"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Orders" onAction="#getResponse"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Quotes" onAction="#getResponse"/>
                 </items>
             </Menu>
         </MenuBar>
@@ -55,7 +57,7 @@
         <VBox style="-fx-background-color: white">
             <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS" wrapText="true"/>
             <HBox>
-                <Label text=" Due: " style="-fx-background-color: white">
+                <Label text=" (Filler for eventual status code or something) " style="-fx-background-color: white">
                     <font>
                         <Font name="Calibri bold" size="20"/>
                     </font>

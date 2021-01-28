@@ -65,8 +65,13 @@ public class Controller {
             ApiResponseController apiResponseController = fxmlLoader.getController();
             MenuItem selectedItem = (MenuItem) event.getSource();
             String response = apiResponseController.getResponse(selectedItem.getText().trim().toLowerCase());
+            handleResponse(response);
             itemDetailsTextArea.setText(response);
             System.out.println(response);
         }
+    }
+
+    private void handleResponse(String response) {
+        String[] statusFields = response.substring(1, response.length()-1).split(",", 5);
     }
 }

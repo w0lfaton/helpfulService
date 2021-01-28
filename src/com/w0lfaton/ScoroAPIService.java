@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class ScoroAPIService {
     private static HTMLRequestService htmlRequestService = new HTMLRequestService();
-    private static final String[] MODULE_ENDPOINTS = new String[]{"projects", "invoices", "prepayments", "tasks", "contacts", "timeEntries", "products", "orders"};
+    private static final String[] MODULE_ENDPOINTS = new String[]{"projects", "invoices", "prepayments", "tasks", "contacts", "timeEntries", "products", "orders", "quotes"};
     private static final String[] ACTIONS = new String[]{"list", "view", "modify", "delete"};
     private HashMap<String, String> requestFields = new HashMap<>();
 
