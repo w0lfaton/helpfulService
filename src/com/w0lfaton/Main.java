@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("mainwindow.fxml"));
         primaryStage.setTitle("Wolf Screen");
-        primaryStage.setScene(new Scene(root, 1600, 900));
+        primaryStage.setScene(new Scene(root, 1024, 600));
         primaryStage.show();
     }
 
