@@ -26,16 +26,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        /*Scanner sc = new Scanner(System.in);
-        while (sc.hasNext()) {
-            String[] command = sc.nextLine().split(" ");
-            if (command.length == 2) {
-                scoroAPIService.request(command[0], command[1]);
-            } else if (command.length == 3) {
-                scoroAPIService.request(command[0], command[1], Integer.parseInt(command[2]));
-            } else {
-                System.out.println("Please provide an action.");
-            }
-        }*/
     }
 }
