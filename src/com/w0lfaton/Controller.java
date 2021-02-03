@@ -9,7 +9,10 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -82,8 +85,38 @@ public class Controller {
             status.setText(responseFields.get("status").toString());
             statusCode.setText(responseFields.get("statusCode").toString());
             messages.setText(responseFields.get("messages").toString());
-            itemDetailsTextArea.setText(responseFields.get("data").toString());
+            LinkedList<HashMap<String, String>> itemList = mapData(responseFields.get("data").toString());
+            for (HashMap<String, String> itemMap : itemList) {
+
+            }
+            itemDetailsTextArea.setText("");
         }
+    }
+
+    private LinkedList<HashMap<String, String>> mapData(String data) {
+        LinkedList<HashMap<String, String>> result = new LinkedList<>();
+        Pattern pattern = Pattern.compile("((\\{)(.*)(}))*");
+        Matcher matcher = pattern.matcher(data);
+        int count = 0;
+        while (matcher.find()) {
+            HashMap<String, String> itemDataFields = new HashMap<>();
+            String[] dataFields = matcher.group(2).split(",");
+            for (String field : dataFields) {
+                String[] fieldNameVal = field.split(":");
+                String name = fieldNameVal[0].substring(1, fieldNameVal[0].length() - 1);
+                String value = "";
+                if (fieldNameVal[1].startsWith("\"")) {
+                    value = fieldNameVal[1].substring(1, fieldNameVal[0].length() - 1);
+                } else {
+                    value = fieldNameVal[1];
+                }
+                itemDataFields.put(name, value);
+            }
+            result.add(itemDataFields);
+            count++;
+        }
+        this.count.setText(String.valueOf(count));
+        return result;
     }
 
     private HashMap<String, Object> mapResponse(String response) {
