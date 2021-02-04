@@ -7,10 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,6 +84,7 @@ public class Controller {
             messages.setText(responseFields.get("messages").toString());
             LinkedList<HashMap<String, String>> itemList = mapData(responseFields.get("data").toString());
             for (HashMap<String, String> itemMap : itemList) {
+                ModuleItem item = new ModuleItem(itemMap);
 
             }
             itemDetailsTextArea.setText("");

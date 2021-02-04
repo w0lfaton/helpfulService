@@ -54,7 +54,7 @@ public class ScoroAPIService {
                 return htmlRequestService.postRequest("https://scorotesthenri.scoro.com/api/v2/" + endpoint + "/" + action + "/" + id, requestFields);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
-                return "ERROR 01-1-03.1: Exception thrown when trying to send a POST request : " + e.getMessage();
+                return "ERROR 01-1-03.2: Exception thrown when trying to send a POST request : " + e.getMessage();
             }
         }
         return "Unrecognized command";

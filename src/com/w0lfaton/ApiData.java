@@ -2,13 +2,11 @@ package com.w0lfaton;
 
 import javafx.collections.ObservableList;
 
-import java.io.*;
-
 public class ApiData {
     private static ApiData instance = new ApiData();
-    private static String filename = "resources/tempData.json";
+    private static String filename = "resources/apiData.json";
 
-    private ObservableList<ApiModule> apiModules;
+    private ObservableList<Module> modules;
 
     private ApiData() {
         this.loadData();
