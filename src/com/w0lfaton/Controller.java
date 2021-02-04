@@ -1,12 +1,18 @@
 package com.w0lfaton;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +41,16 @@ public class Controller {
     private BorderPane mainBorderPane;
 
     public void initialize() {
+        itemView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                if (t1 != null) {
+                    ModuleItem item = (ModuleItem) itemView.getSelectionModel().getSelectedItem();
 
+
+                }
+            }
+        });
     }
 
     @FXML
@@ -85,10 +100,31 @@ public class Controller {
             LinkedList<HashMap<String, String>> itemList = mapData(responseFields.get("data").toString());
             for (HashMap<String, String> itemMap : itemList) {
                 ModuleItem item = new ModuleItem(itemMap);
-
             }
             itemDetailsTextArea.setText("");
         }
+    }
+
+    private void updateListView() {
+        //itemView.setItems();
+        itemView.setCellFactory(new Callback<ListView, ListCell>() {
+            @Override
+            public ListCell call(ListView listView) {
+                ListCell<ModuleItem> cell = new ListCell<>() {
+                    @Override
+                    protected void updateItem(ModuleItem item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setText(null);
+                        } else {
+
+                        }
+                    }
+                };
+
+                return cell;
+            }
+        });
     }
 
     private LinkedList<HashMap<String, String>> mapData(String data) {
