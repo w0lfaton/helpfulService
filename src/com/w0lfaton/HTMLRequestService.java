@@ -28,7 +28,15 @@ public class HTMLRequestService {
         StringBuilder result = new StringBuilder();
         result.append("{");
         for (HashMap.Entry<String, String> entry : fields.entrySet()) {
-            result.append("\n\t\"").append(entry.getKey()).append("\" : \"").append(entry.getValue()).append("\",");
+            if (entry.getValue().startsWith("{")) {
+                result.append("\n\t\"").append(entry.getKey()).append("\" : ").append(entry.getValue()).append(",");
+            } else if (entry.getValue().matches("[0-9]+")) {
+                result.append("\n\t\"").append(entry.getKey()).append("\" : ").append(entry.getValue()).append(",");
+            } else if (entry.getValue().equals("null")) {
+                result.append("\n\t\"").append(entry.getKey()).append("\" : ").append(entry.getValue()).append(",");
+            } else {
+                result.append("\n\t\"").append(entry.getKey()).append("\" : \"").append(entry.getValue()).append("\",");
+            }
         }
         result.deleteCharAt(result.length()-1);
         result.append("\n}");

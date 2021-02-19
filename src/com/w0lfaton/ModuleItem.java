@@ -38,8 +38,7 @@ public class ModuleItem {
 
     @Override
     public String toString() {
-        return "ModuleItem{" +
-                "fields=" + fields.toString() +
-                '}';
+        return "{" + fields.toString() +
+                "}";
     }
 }
