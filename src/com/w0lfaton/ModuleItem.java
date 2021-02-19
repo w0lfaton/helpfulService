@@ -35,4 +35,11 @@ public class ModuleItem {
             this.fields.put(fieldName, "");
         }
     }
+
+    @Override
+    public String toString() {
+        return "ModuleItem{" +
+                "fields=" + fields.toString() +
+                '}';
+    }
 }

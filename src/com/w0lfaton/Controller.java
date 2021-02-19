@@ -2,6 +2,8 @@ package com.w0lfaton;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,8 +48,7 @@ public class Controller {
             public void changed(ObservableValue observableValue, Object o, Object t1) {
                 if (t1 != null) {
                     ModuleItem item = (ModuleItem) itemView.getSelectionModel().getSelectedItem();
-
-
+                    itemDetailsTextArea.setText(item.toString());
                 }
             }
         });
@@ -98,15 +99,18 @@ public class Controller {
             statusCode.setText(responseFields.get("statusCode").toString());
             messages.setText(responseFields.get("messages").toString());
             LinkedList<HashMap<String, String>> itemList = mapData(responseFields.get("data").toString());
+            ObservableList<ModuleItem> resultItems = FXCollections.observableArrayList();
             for (HashMap<String, String> itemMap : itemList) {
                 ModuleItem item = new ModuleItem(itemMap);
+                resultItems.add(item);
             }
+            updateListView(resultItems);
             itemDetailsTextArea.setText("");
         }
     }
 
-    private void updateListView() {
-        //itemView.setItems();
+    private void updateListView(ObservableList<ModuleItem> moduleItems) {
+        itemView.setItems(moduleItems);
         itemView.setCellFactory(new Callback<ListView, ListCell>() {
             @Override
             public ListCell call(ListView listView) {
@@ -117,7 +121,8 @@ public class Controller {
                         if (empty) {
                             setText(null);
                         } else {
-
+                            setText(item.getFieldValue("project_name"));
+                            setTextFill(Color.valueOf(item.getFieldValue("color")));
                         }
                     }
                 };
@@ -125,6 +130,8 @@ public class Controller {
                 return cell;
             }
         });
+        itemView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        itemView.getSelectionModel().selectFirst();
     }
 
     private LinkedList<HashMap<String, String>> mapData(String data) {
@@ -133,21 +140,32 @@ public class Controller {
         Matcher matcher = pattern.matcher(data);
         int count = 0;
         while (matcher.find()) {
-            HashMap<String, String> itemDataFields = new HashMap<>();
-            String[] dataFields = matcher.group(2).split(",");
-            for (String field : dataFields) {
-                String[] fieldNameVal = field.split(":");
-                String name = fieldNameVal[0].substring(1, fieldNameVal[0].length() - 1);
-                String value = "";
-                if (fieldNameVal[1].startsWith("\"")) {
-                    value = fieldNameVal[1].substring(1, fieldNameVal[0].length() - 1);
-                } else {
-                    value = fieldNameVal[1];
-                }
-                itemDataFields.put(name, value);
+            if (matcher.group(3) == null) {
+                break;
             }
-            result.add(itemDataFields);
-            count++;
+            String[] objects = matcher.group(3).split("},\\{");
+            for (String field : objects) {
+                HashMap<String, String> itemDataFields = new HashMap<>();
+                String[] fields = field.split(",");
+                for (String dataField : fields) {
+                    String[] fieldNameVal = dataField.split(":");
+                    String name;
+                    if (fieldNameVal[0].length() > 2) {
+                        name = fieldNameVal[0].substring(1, fieldNameVal[0].length() - 1);
+                    } else {
+                        name = "";
+                    }
+                    String value;
+                    if (fieldNameVal[1].startsWith("\"")) {
+                        value = fieldNameVal[1].substring(1, fieldNameVal[1].length() - 1);
+                    } else {
+                        value = fieldNameVal[1];
+                    }
+                    itemDataFields.put(name, value);
+                }
+                result.add(itemDataFields);
+                count++;
+            }
         }
         this.count.setText(String.valueOf(count));
         return result;
