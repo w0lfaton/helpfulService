@@ -99,7 +99,10 @@ public class Controller {
             status.setText(responseFields.get("status").toString());
             statusCode.setText(responseFields.get("statusCode").toString());
             messages.setText(responseFields.get("messages").toString());
-            if (responseFields.get("messages").toString().startsWith("\"error\"")) return;
+            if (responseFields.get("messages").toString().startsWith("\"error\""))  {
+                System.out.println(mapError(responseFields.get("messages").toString()));
+                return;
+            }
             LinkedList<HashMap<String, String>> itemList = mapData(responseFields.get("data").toString());
             ObservableList<ModuleItem> resultItems = FXCollections.observableArrayList();
             for (HashMap<String, String> itemMap : itemList) {
@@ -146,6 +149,7 @@ public class Controller {
                                         " - " + item.getFieldValue("event_name") +
                                         " - " + item.getFieldValue("datetime_due"));
                             }
+                            //TODO - escape characters come through as a hexadecimal code point and doesn't look nice
                             if (module.equals("products")) {
                                 setText(item.getFieldValue("product_id") +
                                         " - " + item.getFieldValue("name") +
@@ -156,6 +160,7 @@ public class Controller {
                                         "-" + item.getFieldValue("no") +
                                         " " + item.getFieldValue("status"));
                             }
+                            //TODO: company_name only available in view action and not list
                             if (module.equals("quotes")) {
                                 setText(item.getFieldValue("id") +
                                         "-" + item.getFieldValue("no") +
@@ -185,9 +190,10 @@ public class Controller {
             String[] objects = matcher.group(3).split("},\\{");
             for (String field : objects) {
                 HashMap<String, String> itemDataFields = new HashMap<>();
-                String[] fields = field.split(",");
+                //Assumption: All field names start with a quotation mark - (")
+                String[] fields = field.split(",(?=\")");
                 for (String dataField : fields) {
-                    String[] fieldNameVal = dataField.split(":");
+                    String[] fieldNameVal = dataField.split(":", 2);
                     String name;
                     if (fieldNameVal[0].length() > 2) {
                         name = fieldNameVal[0].substring(1, fieldNameVal[0].length() - 1);
@@ -195,6 +201,7 @@ public class Controller {
                         name = "";
                     }
                     String value;
+                    System.out.println(fieldNameVal[0]);
                     if (fieldNameVal[1].startsWith("\"")) {
                         value = fieldNameVal[1].substring(1, fieldNameVal[1].length() - 1);
                     } else {
