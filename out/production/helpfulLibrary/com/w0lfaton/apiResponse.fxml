@@ -14,10 +14,12 @@
     </headerText>
     <content>
         <GridPane vgap="10" hgap="10">
-            <Label text="Action: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="action" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label text="Object Id: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="objectId" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Module: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label fx:id="module" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Action: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label fx:id="action" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Object Id: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="objectId" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
         </GridPane>
     </content>
 </DialogPane>

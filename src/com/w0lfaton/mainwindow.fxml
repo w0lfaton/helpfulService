@@ -1,49 +1,111 @@
-<?import javafx.scene.text.Font?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane fx:id="mainBorderPane"
-            fx:controller="com.w0lfaton.Controller"
-            xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.w0lfaton.Controller">
     <top>
         <MenuBar>
             <Menu text="Action">
                 <items>
                     <Menu text="New...">
                         <items>
-                            <MenuItem text="Project"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="Invoice"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="Task"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="Contact"/>
-                            <SeparatorMenuItem/>
-                            <MenuItem text="Prepayment"/>
+                            <MenuItem text="Project" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Invoice" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Task" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Contact" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Prepayment" />
                         </items>
                     </Menu>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Edit.."/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Exit"/>
+                    <SeparatorMenuItem />
+                    <MenuItem text="Edit.." />
+                    <SeparatorMenuItem />
+                    <MenuItem text="Exit" />
                 </items>
             </Menu>
             <Menu text="API Request">
                 <items>
-                    <MenuItem text="Projects" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Invoices" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Prepayments" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Tasks" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Contacts" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Products" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Orders" onAction="#getResponse"/>
-                    <SeparatorMenuItem/>
-                    <MenuItem text="Quotes" onAction="#getResponse"/>
+                    <Menu text="Projects">
+                        <items>
+                            <MenuItem onAction="#getResponse" text="List"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="View"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="Modify"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Invoices">
+                        <items>
+                            <Menu text="Invoices">
+                                <items>
+                                    <MenuItem onAction="#getResponse" text="List"/>
+                                    <SeparatorMenuItem />
+                                    <MenuItem onAction="#getResponse" text="View"/>
+                                    <SeparatorMenuItem />
+                                    <MenuItem onAction="#getResponse" text="Modify"/>
+                                </items>
+                            </Menu>
+                            <Menu text="Prepayments">
+                                <items>
+                                    <MenuItem onAction="#getResponse" text="List"/>
+                                    <SeparatorMenuItem />
+                                    <MenuItem onAction="#getResponse" text="View"/>
+                                    <SeparatorMenuItem />
+                                    <MenuItem onAction="#getResponse" text="Modify"/>
+                                </items>
+                            </Menu>
+                        </items>
+                    </Menu>
+                    <Menu text="Tasks">
+                        <items>
+                            <MenuItem onAction="#getResponse" text="List"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="View"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="Modify"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Contacts">
+                        <items>
+                            <MenuItem onAction="#getResponse" text="List"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="View"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="Modify"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Products">
+                        <items>
+                            <MenuItem onAction="#getResponse" text="List"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="View"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="Modify"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Orders">
+                        <items>
+                            <MenuItem onAction="#getResponse" text="List"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="View"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="Modify"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Quotes">
+                        <items>
+                            <MenuItem onAction="#getResponse" text="List"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="View"/>
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#getResponse" text="Modify"/>
+                        </items>
+                    </Menu>
                 </items>
             </Menu>
         </MenuBar>
@@ -55,56 +117,56 @@
     </left>
     <center>
         <VBox style="-fx-background-color: white">
-            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS" wrapText="true"/>
+            <TextArea fx:id="itemDetailsTextArea" wrapText="true" VBox.vgrow="ALWAYS" />
             <HBox>
-                <Label text=" Item count " style="-fx-background-color: white">
+                <Label style="-fx-background-color: white" text=" Item count:">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20" />
                     </font>
                 </Label>
                 <Label fx:id="count" style="-fx-background-color: white">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20" />
                     </font>
                 </Label>
             </HBox>
         </VBox>
     </center>
     <bottom>
-        <VBox style="-fx-background-color: white; -fx-padding: 10;" spacing="5">
+        <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
             <HBox>
-                <Label text="Status: " style="-fx-background-color: white">
+                <Label style="-fx-background-color: white" text="Status: ">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20.0" />
                     </font>
                 </Label>
                 <Label fx:id="status" style="-fx-background-color: white">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20" />
                     </font>
                 </Label>
             </HBox>
             <HBox>
-                <Label text="Status code: " style="-fx-background-color: white">
+                <Label style="-fx-background-color: white" text="Status code: ">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20" />
                     </font>
                 </Label>
                 <Label fx:id="statusCode" style="-fx-background-color: white">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20" />
                     </font>
                 </Label>
             </HBox>
             <HBox>
-                <Label text="Messages: " style="-fx-background-color: white">
+                <Label style="-fx-background-color: white" text="Messages: ">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20.0" />
                     </font>
                 </Label>
                 <Label fx:id="messages" style="-fx-background-color: white">
                     <font>
-                        <Font name="Calibri bold" size="20"/>
+                        <Font name="Cambria" size="20" />
                     </font>
                 </Label>
             </HBox>
