@@ -1,7 +1,9 @@
 package com.w0lfaton;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class ModuleItem {
     private HashMap<String, String> fields;
@@ -36,9 +38,15 @@ public class ModuleItem {
         }
     }
 
+    public ObservableList<ObjectField> getAllObservableRequestFields() {
+        ObservableList<ObjectField> result = FXCollections.observableArrayList();
+        fields.forEach((k,v) -> result.add(new ObjectField(k,v)));
+        return result;
+    }
+
+
     @Override
     public String toString() {
-        return "{" + fields.toString() +
-                "}";
+        return fields.toString();
     }
 }

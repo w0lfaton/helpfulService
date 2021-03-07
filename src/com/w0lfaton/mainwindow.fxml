@@ -7,7 +7,7 @@
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.w0lfaton.Controller">
     <top>
         <MenuBar>
-            <Menu text="Action">
+            <Menu text="Menu">
                 <items>
                     <Menu text="New...">
                         <items>
@@ -20,10 +20,12 @@
                             <MenuItem text="Contact" />
                             <SeparatorMenuItem />
                             <MenuItem text="Prepayment" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Quote" />
                         </items>
                     </Menu>
                     <SeparatorMenuItem />
-                    <MenuItem text="Edit.." />
+                    <MenuItem onAction="#showSetUserDialog" text="Set User" />
                     <SeparatorMenuItem />
                     <MenuItem text="Exit" />
                 </items>
@@ -32,78 +34,83 @@
                 <items>
                     <Menu text="Projects">
                         <items>
-                            <MenuItem onAction="#getResponse" text="List"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="View"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="View" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="Modify"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                         </items>
                     </Menu>
                     <Menu text="Invoices">
                         <items>
                             <Menu text="Invoices">
                                 <items>
-                                    <MenuItem onAction="#getResponse" text="List"/>
+                                    <MenuItem onAction="#showApiResponseDialog" text="List" />
                                     <SeparatorMenuItem />
-                                    <MenuItem onAction="#getResponse" text="View"/>
+                                    <MenuItem onAction="#showApiResponseDialog" text="View" />
                                     <SeparatorMenuItem />
-                                    <MenuItem onAction="#getResponse" text="Modify"/>
+                                    <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                                 </items>
                             </Menu>
                             <Menu text="Prepayments">
                                 <items>
-                                    <MenuItem onAction="#getResponse" text="List"/>
+                                    <MenuItem onAction="#showApiResponseDialog" text="List" />
                                     <SeparatorMenuItem />
-                                    <MenuItem onAction="#getResponse" text="View"/>
+                                    <MenuItem onAction="#showApiResponseDialog" text="View" />
                                     <SeparatorMenuItem />
-                                    <MenuItem onAction="#getResponse" text="Modify"/>
+                                    <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                                 </items>
                             </Menu>
                         </items>
                     </Menu>
                     <Menu text="Tasks">
                         <items>
-                            <MenuItem onAction="#getResponse" text="List"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="View"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="View" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="Modify"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                         </items>
                     </Menu>
                     <Menu text="Contacts">
                         <items>
-                            <MenuItem onAction="#getResponse" text="List"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="View"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="View" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="Modify"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                         </items>
                     </Menu>
                     <Menu text="Products">
                         <items>
-                            <MenuItem onAction="#getResponse" text="List"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="View"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="View" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="Modify"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                         </items>
                     </Menu>
                     <Menu text="Orders">
                         <items>
-                            <MenuItem onAction="#getResponse" text="List"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="View"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="View" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="Modify"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="Modify" />
                         </items>
                     </Menu>
                     <Menu text="Quotes">
                         <items>
-                            <MenuItem onAction="#getResponse" text="List"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="View"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="View" />
                             <SeparatorMenuItem />
-                            <MenuItem onAction="#getResponse" text="Modify"/>
+                            <MenuItem onAction="#showApiResponseDialog" text="Modify" />
+                        </items>
+                    </Menu>
+                    <Menu text="Search">
+                        <items>
+                            <MenuItem onAction="#showApiResponseDialog" text="List" />
                         </items>
                     </Menu>
                 </items>
@@ -117,8 +124,26 @@
     </left>
     <center>
         <VBox style="-fx-background-color: white">
+         <GridPane prefHeight="192.0" prefWidth="478.0">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <ListView fx:id="itemFieldList" prefHeight="200.0" prefWidth="200.0" />
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                  <children>
+                     <TextField fx:id="itemFieldValue" />
+                     <TextArea prefHeight="200.0" prefWidth="200.0" />
+                  </children>
+               </VBox>
+            </children>
+         </GridPane>
             <TextArea fx:id="itemDetailsTextArea" wrapText="true" VBox.vgrow="ALWAYS" />
-            <HBox>
+            <HBox fillHeight="false">
                 <Label style="-fx-background-color: white" text=" Item count:">
                     <font>
                         <Font name="Cambria" size="20" />
@@ -172,4 +197,12 @@
             </HBox>
         </VBox>
     </bottom>
+   <right>
+      <TableView fx:id="requestFieldTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="requestFNameCol" prefWidth="101.0" resizable="false" text="Field name" />
+          <TableColumn fx:id="requestFValueCol" prefWidth="98.0" resizable="false" text="Field value" />
+        </columns>
+      </TableView>
+   </right>
 </BorderPane>

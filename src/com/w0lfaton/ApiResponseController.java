@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class ApiResponseController {
-    private static ScoroAPIService scoroAPIService = new ScoroAPIService();
 
     @FXML
     private Label action;
@@ -18,9 +17,9 @@ public class ApiResponseController {
 
     public String getResponse() {
         if (action.getText().trim().toLowerCase().equals("view") || action.getText().trim().toLowerCase().equals("modify")) {
-            return scoroAPIService.request(module.getText().toLowerCase(), action.getText().trim().toLowerCase(), Integer.parseInt(objectId.getText().trim()));
+            return ScoroAPIService.getInstance().request(module.getText().toLowerCase(), action.getText().trim().toLowerCase(), Integer.parseInt(objectId.getText().trim()));
         } else {
-            return scoroAPIService.request(module.getText().toLowerCase(), action.getText().trim().toLowerCase());
+            return ScoroAPIService.getInstance().request(module.getText().toLowerCase(), action.getText().trim().toLowerCase());
         }
     }
 
