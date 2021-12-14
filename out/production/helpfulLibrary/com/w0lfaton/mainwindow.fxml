@@ -118,7 +118,7 @@
         </MenuBar>
     </top>
     <left>
-        <ListView fx:id="itemView" onKeyPressed="#handleKeyPressed">
+        <ListView fx:id="itemView">
 
         </ListView>
     </left>

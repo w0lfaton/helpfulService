@@ -40,7 +40,7 @@ public class ScoroAPIService {
             this.requestFields.remove(field);
             return true;
         } else {
-            System.out.println("Field parameter cannot be empty.");
+            System.out.println("Passed field parameter cannot be empty.");
             return false;
         }
     }
@@ -141,25 +141,5 @@ public class ScoroAPIService {
             }
         }
         return false;
-    }
-
-    private boolean getTempAuth() {
-        try {
-            Path path = Paths.get("tempAuth.json");
-            String json = Files.readString(path);
-            String[] lines = json.substring(3, json.length()-1).split("\n"); // Removing {, \n and \t from start and } from end
-            for (String line : lines) {
-                String[] splitLine = line.split(" : ");
-                if (splitLine[1].trim().endsWith(",")) {
-                    this.requestFields.put(splitLine[0].substring(3, splitLine[0].length() - 1), splitLine[1].substring(1, splitLine[1].length() - 3));
-                } else {
-                    this.requestFields.put(splitLine[0].substring(3, splitLine[0].length() - 1), splitLine[1].substring(1, splitLine[1].length() - 2));
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 }

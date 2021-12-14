@@ -20,6 +20,8 @@
             <PasswordField fx:id="password" GridPane.rowIndex="1" GridPane.columnIndex="1" />
             <Label text="Company account ID: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <TextField fx:id="companyAccount" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Use login.json" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <CheckBox fx:id="loginCheckbox" onAction="#grayOutFields" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
         </GridPane>
     </content>
 </DialogPane>

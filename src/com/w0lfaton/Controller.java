@@ -170,16 +170,6 @@ public class Controller {
     }
 
     @FXML
-    public void handleKeyPressed() {
-
-    }
-
-    @FXML
-    public void handleMenuItemEvent() {
-
-    }
-
-    @FXML
     public void showApiResponseDialog(ActionEvent event) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
@@ -335,7 +325,6 @@ public class Controller {
                         }
                     }
                 };
-
                 return cell;
             }
         });
